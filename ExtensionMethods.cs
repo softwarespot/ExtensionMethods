@@ -148,12 +148,12 @@ namespace ExtensionMethods
     public static class StringConvert
     {
         /// <summary>
-        ///     Prefixes all line-feed characters ( (char)10 ) with a carriage return character ( (char)13 )
+        ///     Prefixes all line-feed characters ( (char) 10 ) with a carriage return character ( (char) 13 )
         /// </summary>
         /// <param name="value">The string to convert</param>
         /// <returns>
-        ///     The string with all instances of line-feed characters ( (char)10 ) prefixed with a carriage return character
-        ///     ( (char)13 )
+        ///     The string with all instances of line-feed characters ( (char) 10 ) prefixed with a carriage return character
+        ///     ( (char) 13 )
         /// </returns>
         // ReSharper disable once InconsistentNaming
         public static string AddCR(this string value)
@@ -162,12 +162,12 @@ namespace ExtensionMethods
         }
 
         /// <summary>
-        ///     Prefixes all carriage return characters ( (char)13 ) with a line-feed character ( (char)10 )
+        ///     Prefixes all carriage return characters ( (char) 13 ) with a line-feed character ( (char) 10 )
         /// </summary>
         /// <param name="value">The string to convert</param>
         /// <returns>
-        ///     The string with all instances of carriage return characters ( (char)13 ) prefixed with a line-feed character
-        ///     ( (char)10 )
+        ///     The string with all instances of carriage return characters ( (char) 13 ) prefixed with a line-feed character
+        ///     ( (char) 10 )
         /// </returns>
         // ReSharper disable once InconsistentNaming
         public static string AddLF(this string value)
@@ -203,6 +203,7 @@ namespace ExtensionMethods
             {
                 list.Add(matches[i].Groups[1].Value);
             }
+
             return list;
         }
 
@@ -219,9 +220,8 @@ namespace ExtensionMethods
                 return String.Empty;
             }
 
-            return value.Length > countLeftAndRight * 2
-                ? String.Format("{0}...{1}", value.Substring(0, countLeftAndRight),
-                    value.Substring(value.Length - countLeftAndRight, countLeftAndRight))
+            return value.Length > countLeftAndRight * 2 ?
+                String.Format("{0}...{1}", value.Substring(0, countLeftAndRight), value.Substring(value.Length - countLeftAndRight, countLeftAndRight))
                 : value;
         }
 
@@ -268,6 +268,7 @@ namespace ExtensionMethods
                     position++;
                 }
             }
+
             return index;
         }
 
@@ -391,6 +392,7 @@ namespace ExtensionMethods
 
             pathSplit[eDir] = pathSplit[eDir].Substring(0, slash + 1); // Path
             pathSplit[eDir] = pathSplit[eDir].Substring(2);
+
             return pathSplit;
         }
 
@@ -417,6 +419,7 @@ namespace ExtensionMethods
                 value += value;
                 count = count >> 1;
             }
+
             return value + result;
 
             // return String.Join(value, new string[++count]);
@@ -484,11 +487,9 @@ namespace ExtensionMethods
                 ? String.Empty
                 : new string(value.ToCharArray().Select(
                     @char =>
-                        (char)
-                            (@char >= 'A' && @char <= 'M' || @char >= 'a' && @char <= 'm'
+                        (char) (@char >= 'A' && @char <= 'M' || @char >= 'a' && @char <= 'm'
                                 ? @char + 13
-                                : @char >= 'N' && @char <= 'Z' || @char >= 'n' && @char <= 'z' ? @char - 13 : @char
-                                )
+                                : @char >= 'N' && @char <= 'Z' || @char >= 'n' && @char <= 'z' ? @char - 13 : @char)
                     ).ToArray());
 
             // if (String.IsNullOrEmpty(value))
@@ -522,10 +523,7 @@ namespace ExtensionMethods
             return String.IsNullOrEmpty(value)
                 ? String.Empty
                 : new string(value.ToCharArray().Select(
-                    @char =>
-                        (char)
-                            (
-                                @char >= '0' && @char <= '4'
+                    @char => (char) (@char >= '0' && @char <= '4'
                                     ? @char + 5
                                     : @char >= '5' && @char <= '9'
                                         ? @char - 5
@@ -533,8 +531,7 @@ namespace ExtensionMethods
                                             ? @char + 13
                                             : @char >= 'N' && @char <= 'Z' || @char >= 'n' && @char <= 'z'
                                                 ? @char - 13
-                                                : @char
-                                )
+                                                : @char)
                     ).ToArray());
         }
 
@@ -549,12 +546,9 @@ namespace ExtensionMethods
                 ? String.Empty
                 : new string(value.ToCharArray().Select(
                     @char =>
-                        (char)
-                            (
-                                @char >= 33 && @char <= 79
+                        (char) (@char >= 33 && @char <= 79
                                     ? @char + 47
-                                    : @char >= 80 && @char <= 126 ? @char - 47 : @char
-                                )
+                                    : @char >= 80 && @char <= 126 ? @char - 47 : @char)
                     ).ToArray());
         }
 
@@ -567,22 +561,16 @@ namespace ExtensionMethods
         {
             return String.IsNullOrEmpty(value)
                 ? String.Empty
-                : new string(value.ToCharArray().Select(
-                    @char =>
-                        (char)
-                            (
-                                !Char.IsDigit(@char)
+                : new string(value.ToCharArray().Select(@char => (char) (!Char.IsDigit(@char)
                                     ? @char
-                                    : @char >= '0' && @char <= '4' ? @char + 5 : @char - 5
-                                )
-                    ).ToArray());
+                                    : @char >= '0' && @char <= '4' ? @char + 5 : @char - 5)).ToArray());
         }
 
         /// <summary>
-        ///     Removes all carriage return values ( (char)13 ) from a string
+        ///     Removes all carriage return values ( (char) 13 ) from a string
         /// </summary>
         /// <param name="value">The string to convert</param>
-        /// <returns>The string with all instances of the (char)13 character removed; otherwise, an empty string</returns>
+        /// <returns>The string with all instances of the (char) 13 character removed; otherwise, an empty string</returns>
         // ReSharper disable once InconsistentNaming
         public static string StripCR(this string value)
         {
@@ -590,10 +578,10 @@ namespace ExtensionMethods
         }
 
         /// <summary>
-        ///     Removes all line-feed values ( (char)10 ) from a string
+        ///     Removes all line-feed values ( (char) 10 ) from a string
         /// </summary>
         /// <param name="value">The string to convert</param>
-        /// <returns>The string with all instances of the (char)10 character removed; otherwise, an empty string</returns>
+        /// <returns>The string with all instances of the (char) 10 character removed; otherwise, an empty string</returns>
         // ReSharper disable once InconsistentNaming
         public static string StripLF(this string value)
         {
@@ -601,7 +589,7 @@ namespace ExtensionMethods
         }
 
         /// <summary>
-        ///     Strips the white space ( (char)0, (char)9-(char)13 and (char)32 ) in a string
+        ///     Strips the white space ( (char) 0, (char) 9 - (char) 13 and (char) 32 ) in a string
         /// </summary>
         /// <param name="value">The string to convert</param>
         /// <param name="flags">Flags related to stripping white space</param>
@@ -633,6 +621,7 @@ namespace ExtensionMethods
             {
                 value = value.TrimEnd();
             }
+
             return value;
         }
 
@@ -650,6 +639,7 @@ namespace ExtensionMethods
             }
 
             count = (count < 0 || count >= value.Length ? value.Length : count);
+
             return value.Substring(count, value.Length - count);
         }
 
@@ -667,6 +657,7 @@ namespace ExtensionMethods
             }
 
             count = value.Length - (count < 0 || count > value.Length ? value.Length : count);
+
             return value.Substring(0, count);
         }
 
@@ -693,8 +684,8 @@ namespace ExtensionMethods
         /// <param name="value">A string containing the value to check</param>
         /// <returns>true if value was a T datatype; otherwise, false</returns>
         public static bool Is<T>(this string value)
-        // http://stackoverflow.com/questions/1654871/generic-tryparse-extension-method
         {
+            // http://stackoverflow.com/questions/1654871/generic-tryparse-extension-method
             var type = typeof(T);
             var tryParseMethod = type.GetMethod(
                 "TryParse",
@@ -748,8 +739,8 @@ namespace ExtensionMethods
         // ReSharper disable once InconsistentNaming
         public static bool IsASCII(this string value)
         {
-            return !String.IsNullOrEmpty(value) && !value.Any(@char => @char > '\x007f');
             // Not any chars that are above 127
+            return !String.IsNullOrEmpty(value) && !value.Any(@char => @char > '\x007f');
         }
 
         /// <summary>
@@ -760,6 +751,7 @@ namespace ExtensionMethods
         public static bool IsBool(this string value)
         {
             bool result;
+
             return Boolean.TryParse(value, out result);
         }
 
@@ -771,6 +763,7 @@ namespace ExtensionMethods
         public static bool IsByte(this string value)
         {
             byte result;
+
             return Byte.TryParse(value, out result);
         }
 
@@ -782,6 +775,7 @@ namespace ExtensionMethods
         public static bool IsChar(this string value)
         {
             char result;
+
             return Char.TryParse(value, out result);
         }
 
@@ -793,6 +787,7 @@ namespace ExtensionMethods
         public static bool IsDateTime(this string value)
         {
             DateTime result;
+
             return DateTime.TryParse(value, out result);
         }
 
@@ -804,6 +799,7 @@ namespace ExtensionMethods
         public static bool IsDecimal(this string value)
         {
             decimal result;
+
             return Decimal.TryParse(value, out result);
         }
 
@@ -825,6 +821,7 @@ namespace ExtensionMethods
         public static bool IsDouble(this string value)
         {
             double result;
+
             return Double.TryParse(value, out result);
         }
 
@@ -858,6 +855,7 @@ namespace ExtensionMethods
         public static bool IsFloat(this string value)
         {
             float result;
+
             return Single.TryParse(value, out result);
         }
 
@@ -893,6 +891,7 @@ namespace ExtensionMethods
         public static bool IsInt(this string value)
         {
             int result;
+
             return Int32.TryParse(value, out result);
         }
 
@@ -1005,6 +1004,7 @@ namespace ExtensionMethods
         public static bool IsLong(this string value)
         {
             long result;
+
             return Int64.TryParse(value, out result);
         }
 
@@ -1085,6 +1085,7 @@ namespace ExtensionMethods
         public static bool IsSByte(this string value)
         {
             sbyte result;
+
             return SByte.TryParse(value, out result);
         }
 
@@ -1096,11 +1097,12 @@ namespace ExtensionMethods
         public static bool IsShort(this string value)
         {
             short result;
+
             return Int16.TryParse(value, out result);
         }
 
         /// <summary>
-        ///     Checks if a string contains only whitespace characters ( (char)0, (char)9-(char)13 and (char)32 )
+        ///     Checks if a string contains only whitespace characters ( (char) 0, (char) 9 - (char) 13 and (char) 32 )
         /// </summary>
         /// <param name="value">A string to check</param>
         /// <returns>true if string contains only whitespace characters; otherwise, false</returns>
@@ -1231,6 +1233,7 @@ namespace ExtensionMethods
                     }
                 }
             }
+
             return TypeCode.String;
         }
 
@@ -1242,6 +1245,7 @@ namespace ExtensionMethods
         public static bool IsUInt(this string value)
         {
             uint result;
+
             return UInt32.TryParse(value, out result);
         }
 
@@ -1283,6 +1287,7 @@ namespace ExtensionMethods
         public static bool IsULong(this string value)
         {
             ulong result;
+
             return UInt64.TryParse(value, out result);
         }
 
@@ -1304,6 +1309,7 @@ namespace ExtensionMethods
         public static bool IsUShort(this string value)
         {
             ushort result;
+
             return UInt16.TryParse(value, out result);
         }
 
@@ -1315,8 +1321,7 @@ namespace ExtensionMethods
         /// <returns>true if string didn't contain the set of characters; otherwise, false</returns>
         public static bool IsValid(this string value, string invalid)
         {
-            return
-                !String.IsNullOrEmpty(value) && !String.IsNullOrEmpty(invalid) &&
+            return !String.IsNullOrEmpty(value) && !String.IsNullOrEmpty(invalid) &&
                 new Regex(String.Format(@"[{0}]", Regex.Escape(invalid)), RegexOptions.IgnoreCase).IsMatch(value);
         }
 
@@ -1352,8 +1357,8 @@ namespace ExtensionMethods
         /// <returns>true if value was a web safe color; otherwise, false</returns>
         public static bool IsWebSafeColor(this string value)
         {
-            return
-                !String.IsNullOrEmpty(value) && new Regex(@"^(?:#|0[xX])?(([CcFf0369])\2){3}$").IsMatch(value);
+            return !String.IsNullOrEmpty(value) &&
+                new Regex(@"^(?:#|0[xX])?(([CcFf0369])\2){3}$").IsMatch(value);
         }
 
         /// <summary>
@@ -1409,8 +1414,9 @@ namespace ExtensionMethods
             var successful = (bool)isExecuted;
             if (successful)
             {
-                result = (T)parameters[1];
+                result = (T) parameters[1];
             }
+
             return result;
         }
 
@@ -1423,6 +1429,7 @@ namespace ExtensionMethods
         {
             bool result;
             Boolean.TryParse(value, out result);
+
             return result;
         }
 
@@ -1435,6 +1442,7 @@ namespace ExtensionMethods
         {
             byte result;
             Byte.TryParse(value, out result);
+
             return result;
         }
 
@@ -1447,6 +1455,7 @@ namespace ExtensionMethods
         {
             char result;
             Char.TryParse(value, out result);
+
             return result;
         }
 
@@ -1459,6 +1468,7 @@ namespace ExtensionMethods
         {
             DateTime result;
             DateTime.TryParse(value, out result);
+
             return result;
         }
 
@@ -1471,6 +1481,7 @@ namespace ExtensionMethods
         {
             decimal result;
             Decimal.TryParse(value, out result);
+
             return result;
         }
 
@@ -1483,6 +1494,7 @@ namespace ExtensionMethods
         {
             double result;
             Double.TryParse(value, out result);
+
             return result;
         }
 
@@ -1495,6 +1507,7 @@ namespace ExtensionMethods
         {
             float result;
             Single.TryParse(value, out result);
+
             return result;
         }
 
@@ -1513,6 +1526,7 @@ namespace ExtensionMethods
 
             value = value.Substring(2);
             UInt32.TryParse(value, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out result);
+
             return result;
         }
 
@@ -1525,6 +1539,7 @@ namespace ExtensionMethods
         {
             int result;
             Int32.TryParse(value, out result);
+
             return result;
         }
 
@@ -1567,6 +1582,7 @@ namespace ExtensionMethods
         {
             long result;
             Int64.TryParse(value, out result);
+
             return result;
         }
 
@@ -1579,6 +1595,7 @@ namespace ExtensionMethods
         {
             sbyte result;
             SByte.TryParse(value, out result);
+
             return result;
         }
 
@@ -1591,6 +1608,7 @@ namespace ExtensionMethods
         {
             short result;
             Int16.TryParse(value, out result);
+
             return result;
         }
 
@@ -1603,6 +1621,7 @@ namespace ExtensionMethods
         {
             uint result;
             UInt32.TryParse(value, out result);
+
             return result;
         }
 
@@ -1645,6 +1664,7 @@ namespace ExtensionMethods
         {
             ulong result;
             UInt64.TryParse(value, out result);
+
             return result;
         }
 
@@ -1657,6 +1677,7 @@ namespace ExtensionMethods
         {
             ushort result;
             UInt16.TryParse(value, out result);
+
             return result;
         }
     }

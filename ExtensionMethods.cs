@@ -162,7 +162,7 @@ namespace ExtensionMethods
         }
 
         /// <summary>
-        ///     Prefixes all carriage return characters ( (char) 13 ) with a line-feed character ( (char) 10 )
+        ///     Postfixes all carriage return characters ( (char) 13 ) with a line-feed character ( (char) 10 )
         /// </summary>
         /// <param name="value">The string to convert</param>
         /// <returns>
